@@ -36,7 +36,7 @@ def get_transsolver_extension(config):
 	sourcefiles        = ['sfminit/src/_wrapper_transsolver.pyx', 'sfminit/src/trans_solver.cc']
 	include_dirs       = [config['eigen']] +  config['python_includes']
 	library_dirs       = []
-	suite_sparse_libs  = ['lapack', 'ccolamd', 'spqr', 'cholmod', 'colamd','camd', 'amd', 'suitesparseconfig']
+	suite_sparse_libs  = ['lapack', 'ccolamd', 'spqr', 'cholmod', 'colamd','camd', 'amd', 'suitesparseconfig', 'cxsparse']
 	ceres_libs         = ['ceres', 'glog', 'gflags']
 	libraries          = ceres_libs + suite_sparse_libs + ['pthread', 'm'] + config['omp_libs']
 	extra_compile_args = ['-O2', '-Wno-unused-function'] + config['omp_flags']
