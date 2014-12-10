@@ -44,13 +44,21 @@ def oneDSfM(edges, poses, num_samples=48, weights_file=None,
 
     projection_dirs = oneDSfM_sample_directions(poses, num_samples)
 
+    print "aqui"
+
     # prepare a description of each subproblem to pass to a multiprocessing pool 
     pool_args = []
     for dir in projection_dirs:
         pool_args.append((poses, edges, dir))
 
+    print "aqui2"
+
     # distribute the work and block. This will return 1D orderings and weights.
-    results = mp.Pool(num_workers).map(pool_worker, pool_args)
+    # results = mp.Pool(num_workers).map(pool_worker, pool_args)
+
+    results = [pool_worker(huehue) for huehue in pool_args]
+
+    print "aqui3"
 
     # accumulate which edges were broken by each ordering
     broken_weight = np.sum(np.vstack(results), axis=0) / num_samples

@@ -9,6 +9,7 @@ import argparse
 import numpy as np
 import copy
 import sys
+import logging
 
 
 """
@@ -27,6 +28,7 @@ def make_cli():
     return parser.parse_args()
 
 def run_pipeline():
+    logging.basicConfig(level=logging.INFO)
     args = make_cli()
     data_dir = args.dataset_dir
     out_dir = args.output_dir

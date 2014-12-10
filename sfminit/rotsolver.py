@@ -5,7 +5,28 @@ import tempfile
 import subprocess
 from .sfminittypes import EG, write_EGs_file, read_rot_file
 
+import rotation_averaging
+
 def solve_global_rotations(indices, pairwise_rotations, cc=None):
+    maxi = max([max(i) for i in indices]) + 1
+
+    pairwise_rotations = [rotation_averaging.util.fix_matrix(rotation) for rotation in pairwise_rotations]
+    initial_guess = rotation_averaging.graph.compute_initial_guess(maxi, pairwise_rotations, indices)
+
+    # rotation_averaging.compare.compare_global_rotation_to_graph(initial_guess, pairwise_rotations, indices, plot=True)
+    solution = rotation_averaging.algorithms.L1RA(maxi, pairwise_rotations, indices, initial_guess, max_iterations=5)
+    # rotation_averaging.compare.compare_global_rotation_to_graph(solution, pairwise_rotations, indices, plot=True)
+    solution = rotation_averaging.algorithms.IRLS(maxi, pairwise_rotations, indices, solution, max_iterations=5)
+    # rotation_averaging.compare.compare_global_rotation_to_graph(solution, pairwise_rotations, indices, plot=True)
+
+    solution = np.array([solution[int(i)] for i in cc])
+    cc = np.array(cc).astype(int)
+
+    # print cc.shape
+    # print solution.shape
+    return cc, solution
+
+def old_solve_global_rotations(indices, pairwise_rotations, cc=None):
     """
     Solve the multiple rotations averaging problem using Chatterjee and Govindu's 
     L1_IRLS method. The implementation is in Matlab, so this is a wrapper that writes

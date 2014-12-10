@@ -4,7 +4,6 @@ copyright 2012-2014 Kyle Wilson (wilsonkl@cs.cornell.edu)
 
 based on the global structure from motion work with Noah Snavely
 
-
 Introduction:
 -------------
 SfM Init is a toolkit for solving some parts of a global Stucture from Motion
@@ -56,9 +55,7 @@ routines, it requires cython.
 The translations solver requires the [Ceres Solver](http://ceres-solver.org) 
 nonlinear least squares package.
 
-Chatterjee and Govindu's rotations averaging code can be found at their [project
-page](http://www.ee.iisc.ernet.in/labs/cvl/research/efficient-and-robust-large-scale-rotation-averaging/).
-Unzip the contents of this tar file into the rotsolver directory.
+This version uses the Rotation Averaging package available [here](https://github.com/RafaelMarinheiro/RotationAveraging).
 
 Finally, to compile the numerics rountines, run the following from SfM Init's 
 root directory:
