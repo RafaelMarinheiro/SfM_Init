@@ -1,3 +1,5 @@
+This is a fork by Bryce Evans and Rafael Marinheiro. In this fork, we use the [RotationAveraging Package](https://github.com/RafaelMarinheiro/RotationAveraging), which was written in Python.
+
 SfM Init  User's Manual
 =======================
 copyright 2012-2014 Kyle Wilson (wilsonkl@cs.cornell.edu)
